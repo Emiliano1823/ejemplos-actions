@@ -1,6 +1,12 @@
 name: hola mundo
 
-on: [push]
+on: 
+   workflow_dispatch:
+    # schedule:
+    # - cron: "*/5 * * * *" # se ejecuta cada 5 minutos
+    #  push:
+    #  branches:
+    #    - main
 
 jobs:
   saludar:
@@ -8,3 +14,11 @@ jobs:
     steps:
       - name: Muestra mensaje hola mundo
         run: echo "hola mundo, Emiliano"
+        
+      - name: Checkout
+        uses: actions/checkout@v6.0.2
+
+      - name: Listar los archivos del repositorio
+        run:
+         echo "El repositorio ${{ github.repository }} contiene los siguientes archivos:"
+         tree
